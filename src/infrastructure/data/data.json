@@ -1,0 +1,20 @@
+[
+    {
+        "word": "eat",
+        "images":[
+            "https://www.inglesmundial.com/palabras/eat.jpg",
+            "https://thumbs.dreamstime.com/b/ni%C3%B1a-linda-feliz-come-comida-saludable-166126023.jpg"
+        ]
+    },
+    {
+        "word": "buy",
+        "images":["https://i.pinimg.com/736x/b7/13/26/b7132635acbd74705fe7cdf4aef1e704.jpg"]
+    },
+    {
+        "word": "drink",
+        "images":[
+            "https://cdn.langeek.co/photo/48573/original/drink?type=jpeg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcdB9buDQioFf52MwoLr4SEiKptp1P2SiAyg&s"
+        ]
+    }
+]
