@@ -1,17 +1,26 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Verb } from './verb.model';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { VerbFormTypeModel } from './verb-form-type.model';
+import { VerbModel } from './verb.model';
 
 @Entity('verb_forms')
-export class VerbForm {
+export class VerbFormModel {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Verb, (verb) => verb.verbForms)
-  verb: Verb;
+  @ManyToOne(() => VerbModel, (verb) => verb.verbForms)
+  public verb: string;
 
   @Column()
-  name: string;
-  //   private verbFormTypeId: number;
-  //   private verbPronunciations: VerbPronunciation[];
-  
+  public name: string;
+
+  @OneToOne(() => VerbFormTypeModel, (verbFormType) => verbFormType.id)
+  public verbFormType: VerbFormTypeModel;
+
+  // public verbPronunciations: VerbPronunciation[];
 }

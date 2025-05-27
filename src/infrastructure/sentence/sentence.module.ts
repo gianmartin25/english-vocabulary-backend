@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Sentence } from './models/sentence.model';
+import { SentenceModel } from './models/sentence.model';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Sentence])],
+  imports: [TypeOrmModule.forFeature([SentenceModel])],
 })
 export class SentenceModule {}

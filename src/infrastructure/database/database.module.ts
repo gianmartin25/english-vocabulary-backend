@@ -1,16 +1,30 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { Verb } from '../verb/models/verb.model';
-import { VerbImage } from '../verb/models/verb-image.model';
-import { VerbForm } from '../verb/models/verb-form.model';
-import { Sentence } from '../sentence/models/sentence.model';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AdjectiveModule } from '../adjective/adjective.module';
+import { ArticleModule } from '../article/article.module';
+import { NounModule } from '../noun/noun.module';
+import { PhonemeModule } from '../phoneme/phoneme.module';
+import { SentenceModule } from '../sentence/sentence.module';
+import { SubjectModule } from '../subject/subject.module';
+import { VerbModule } from '../verb/verb.module';
+import { WordModule } from '../word/word.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
+      imports: [
+        ConfigModule,
+        SentenceModule,
+        VerbModule,
+        WordModule,
+        AdjectiveModule,
+        ArticleModule,
+        PhonemeModule,
+        NounModule,
+        SubjectModule
+      ],
       useFactory: (configService: ConfigService) => {
         return {
           type: 'postgres',
@@ -19,7 +33,7 @@ import { Sentence } from '../sentence/models/sentence.model';
           username: configService.get('POSTGRES_USER'),
           password: configService.get('POSTGRES_PASSWORD'),
           database: configService.get('POSTGRES_DB'),
-          entities: [Verb, VerbForm, VerbImage, Sentence],
+          entities: [],
           // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
           synchronize: true, // Be cautious about using synchronize in production
           autoLoadEntities: true,

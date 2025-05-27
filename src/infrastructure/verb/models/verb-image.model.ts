@@ -1,13 +1,13 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Verb } from './verb.model';
+import { VerbModel } from './verb.model';
 
 @Entity('verb_images')
-export class VerbImage {
+export class VerbImageModel {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Verb, (verb) => verb.verbImages)
-  verb: Verb;
+  @ManyToOne(() => VerbModel, (verb) => verb.verbImages)
+  verb: VerbModel;
 
   @Column()
   name: string;

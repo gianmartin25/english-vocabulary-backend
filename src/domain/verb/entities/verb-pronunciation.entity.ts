@@ -9,5 +9,5 @@ export class VerbPronunciation {
     private verbFormId: string;
     private phonetic: string;
     private pronunciationTypeCountry: keyof typeof PronunciationTypesCountry;
-    private characterPronunciationId: number;
+    private phonemePronunciationId: number;
 }

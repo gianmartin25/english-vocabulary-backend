@@ -16,6 +16,7 @@ import * as path from 'path';
 
 export interface IVerb {
   word: string;
+  type: string;
   images: string[];
 }
 

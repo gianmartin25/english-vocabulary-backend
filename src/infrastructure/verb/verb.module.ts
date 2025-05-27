@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { VerbForm } from './models/verb-form.model';
-import { VerbImage } from './models/verb-image.model';
-import { Verb } from './models/verb.model';
+import { VerbFormTypeModel } from './models/verb-form-type.model';
+import { VerbFormModel } from './models/verb-form.model';
+import { VerbImageModel } from './models/verb-image.model';
+import { VerbModel } from './models/verb.model';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Verb, VerbForm, VerbImage])],
+  imports: [TypeOrmModule.forFeature([VerbModel, VerbFormModel,VerbFormTypeModel, VerbImageModel])],
 })
 export class VerbModule {}

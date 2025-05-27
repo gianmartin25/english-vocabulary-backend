@@ -1,8 +1,8 @@
 import { SoundEntity } from "../sound/sound.entity";
 
-export class CharacterEntity {
+export class PhonemeEntity {
     private id: number;
-    private characterIPA: string;
-    private characterExampleId: number;
+    private phonemeIPA: string;
+    private phonemeExampleId: number;
     private sounds: SoundEntity[];
 }

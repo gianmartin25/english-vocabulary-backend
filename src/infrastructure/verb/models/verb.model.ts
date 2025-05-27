@@ -1,11 +1,11 @@
 // src/users/entity/users.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { VerbForm } from './verb-form.model';
-import { VerbImage } from './verb-image.model';
-import { Sentence } from 'src/infrastructure/sentence/models/sentence.model';
+import { SentenceModel } from 'src/infrastructure/sentence/models/sentence.model';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { VerbFormModel } from './verb-form.model';
+import { VerbImageModel } from './verb-image.model';
 
 @Entity('verbs')
-export class Verb {
+export class VerbModel {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -14,16 +14,15 @@ export class Verb {
   })
   typeVerb: string;
 
-  @OneToMany(() => VerbForm, (verbForm) => verbForm.verb)
-  verbForms: VerbForm[];
+  @OneToMany(() => VerbFormModel, (verbForm) => verbForm.verb)
+  verbForms: VerbFormModel[];
 
-  @OneToMany(() => VerbImage, (verbImage) => verbImage.verb)
-  verbImages: VerbImage[];
+  @OneToMany(() => VerbImageModel, (verbImage) => verbImage.verb)
+  verbImages: VerbImageModel[];
 
-  @OneToMany(() => Sentence, (sentence) => sentence.verb)
-  sentences: Sentence[];oc
+  @OneToMany(() => SentenceModel, (sentence) => sentence.verb)
+  sentences: SentenceModel[];
 
-  //   private sentences: SentenceEntity[];
   @Column({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',

@@ -1,4 +1,4 @@
-export class  CharacterExampleEntity {
+export class  PhoenemeExampleEntity {
     private id: number;
     private verbId: number; 
 }

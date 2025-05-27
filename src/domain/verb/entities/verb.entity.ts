@@ -1,6 +1,7 @@
 import { SentenceEntity } from 'src/domain/sentence/sentence.entity';
 import { VerbFormEntity } from './verb-form.entity';
-import { VerbImageEntity } from './verb-image.entity';
+import { WordImageEntity } from '../../word/word-image.entity';
+import { WordEntity } from 'src/domain/word/word.entity';
 
 enum TypeVerb {
   REGULAR = 'regular',
@@ -12,8 +13,8 @@ export class VerbEntity {
   private id: number;
   private typeVerb: TypeVerb;
   private verbForms: VerbFormEntity[];
-  private verbImages: VerbImageEntity[];
   private sentences: SentenceEntity[];
+  private wordId: WordEntity;
   private createdAt: Date;
   private updatedAt: Date;
 
@@ -21,19 +22,17 @@ export class VerbEntity {
     id: number,
     typeVerb: TypeVerb,
     verbForms: VerbFormEntity[],
-    verbImages: VerbImageEntity[],
+    verbImages: WordImageEntity[],
     sentences: SentenceEntity[],
+    wordId: WordEntity,
   ) {
     this.id = id;
     this.typeVerb = typeVerb;
     this.verbForms = verbForms;
-    this.verbImages = verbImages;
     this.sentences = sentences;
+    this.wordId = wordId;
     this.createdAt = new Date();
   }
 
-  get getId(): number {
-    return this.id;
-  }
   
 }

@@ -1,13 +1,13 @@
-import { Verb } from 'src/infrastructure/verb/models/verb.model';
+import { VerbModel } from 'src/infrastructure/verb/models/verb.model';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('sentences')
-export class Sentence {
+export class SentenceModel {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Verb, (verb) => verb.sentences)
-  verb: Verb;
+  @ManyToOne(() => VerbModel, (verb) => verb.sentences)
+  verb: VerbModel;
 
   @Column()
   descripcion: string;
@@ -25,3 +25,4 @@ export class Sentence {
   })
   updatedAt: Date;
 }
+
