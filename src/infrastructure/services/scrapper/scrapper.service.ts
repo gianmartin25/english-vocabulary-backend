@@ -1,20 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { HttpClientAxiosService } from '../http-client-axios/http-client-axios.service';
 import * as cheerio from 'cheerio';
 import { PronunciationTypesCountry } from 'src/domain/verb/entities/verb-pronunciation.entity';
-import { IVerb } from 'src/presentation/verb/controllers/verbs/verbs.controller';
-import { CharacterDTO, VerbCountryServiceDTO } from 'src/infrastructure/dtos/VerbCountryServiceDTO.dto';
-import { VerbServiceDTO } from 'src/infrastructure/dtos/VerbServiceDTO.dto';
+import {
+  PhoenemeDTO,
+  WordCountryServiceDTO,
+} from 'src/infrastructure/dtos/WordCountryServiceDTO.dto';
+import { WordServiceDTO } from 'src/infrastructure/dtos/WordServiceDTO.dto';
+import { HttpClientAxiosService } from '../http-client-axios/http-client-axios.service';
+
+interface IWord {
+  wordName: string;
+  images: string[];
+}
 
 @Injectable()
 export class ScrapperService {
   constructor(private httpClientAxiosService: HttpClientAxiosService) {}
 
-  async scrapeWebsite(url: string, verb: IVerb): Promise<VerbServiceDTO> {
-    const verbServiceDTO = new VerbServiceDTO();
-    const verbsCountryServiceDTO: VerbCountryServiceDTO[] = [];
+  async scrapeWebsite(url: string, word: IWord): Promise<WordServiceDTO> {
+    const verbServiceDTO = new WordServiceDTO();
+    const verbsCountryServiceDTO: WordCountryServiceDTO[] = [];
     try {
-      const html = await this.httpClientAxiosService.get<string>(url + verb.word);
+      const html = await this.httpClientAxiosService.get<string>(
+        url + word.wordName,
+      );
       // console.log(html);
       const $ = cheerio.load(html);
       const $containerDivPronunciation = $('div.lp-10.lb.lbt0').first();
@@ -32,7 +41,7 @@ export class ScrapperService {
         $containerDivPronunciation.children();
       console.log($containersCountryPronunciation.attr('class'));
       $containersCountryPronunciation.each((index, element) => {
-        const verbCountryServiceDTO = new VerbCountryServiceDTO();
+        const verbCountryServiceDTO = new WordCountryServiceDTO();
         const $countryElement = $(element).find('.daud.t.tb.fs16.lmr-15');
         const $titlePronunciation = $(element).find('.section-header.lmb-10');
         const audioUrl = $titlePronunciation
@@ -45,7 +54,7 @@ export class ScrapperService {
         const $wordPronunciation = $titlePronunciation.find('.term.tb.lml-5');
         const $containerCharacters = $(element).find('.hul-u');
         $containerCharacters.children().each((index, characterElement) => {
-          const characterServiceDTO = new CharacterDTO();
+          const characterServiceDTO = new PhoenemeDTO();
           const $character = $(characterElement);
           const audioCharacterUrl = $character
             .find('audio source[type="audio/mpeg"]')
@@ -58,10 +67,10 @@ export class ScrapperService {
             .find('span[data-title="Written pronunciation"].pron')
             .text();
           const wordExample = $character.find('.word').text();
-          characterServiceDTO.setAudioCharacterUrl(
+          characterServiceDTO.setAudioPhonemeUrl(
             `https://dictionary.cambridge.org${audioCharacterUrl}`,
           );
-          characterServiceDTO.setPhoneticCharacter(phoneticCharacter);
+          characterServiceDTO.setPhoneme(phoneticCharacter);
           characterServiceDTO.setWordExample(wordExample);
           console.log(`${phoneticCharacter}\n`);
           console.log(`Example: ${wordExample}\n`);
@@ -76,7 +85,7 @@ export class ScrapperService {
             ? PronunciationTypesCountry.UK
             : PronunciationTypesCountry.US;
         verbCountryServiceDTO.setPhonetic(pron.text());
-        verbCountryServiceDTO.setVerbName($wordPronunciation.text());
+        verbCountryServiceDTO.setWordName($wordPronunciation.text());
         verbCountryServiceDTO.setCountry(
           country as keyof typeof PronunciationTypesCountry,
         );
@@ -87,12 +96,11 @@ export class ScrapperService {
         console.log('Country:', $countryElement.text());
       });
 
-
-      verb.images.forEach((image) => {
+      word.images.forEach((image) => {
         verbServiceDTO.addImage(image);
       });
 
-      verbServiceDTO.setCountryVerb(verbsCountryServiceDTO);
+      verbServiceDTO.setCountryWord(verbsCountryServiceDTO);
 
       // console.log($containerDivPronunciation.html());
       // console.log($containerDivPronunciation.children().length);

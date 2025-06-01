@@ -1,0 +1,38 @@
+[
+  {
+    "wordName": "cat",
+    "images": [
+      "https://example.com/images/cat1.jpg",
+      "https://example.com/images/cat2.jpg"
+    ],
+    "plural": "cats"
+  },
+  {
+    "wordName": "child",
+    "images": [
+      "https://example.com/images/child1.jpg"
+    ],
+    "plural": "children"
+  },
+  {
+    "wordName": "box",
+    "images": [
+      "https://example.com/images/box1.jpg"
+    ],
+    "plural": "boxes"
+  },
+  {
+    "wordName": "man",
+    "images": [
+      "https://example.com/images/man1.jpg"
+    ],
+    "plural": "men"
+  },
+  {
+    "wordName": "city",
+    "images": [
+      "https://example.com/images/city1.jpg"
+    ],
+    "plural": "cities"
+  }
+]

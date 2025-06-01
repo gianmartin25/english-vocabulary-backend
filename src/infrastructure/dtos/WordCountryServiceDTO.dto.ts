@@ -1,19 +1,19 @@
 import { PronunciationTypesCountry } from 'src/domain/verb/entities/verb-pronunciation.entity';
 
-export class VerbCountryServiceDTO {
+export class WordCountryServiceDTO {
   typeVerb: string;
   country: keyof typeof PronunciationTypesCountry;
-  verbName: string;
+  wordName: string;
   audioUrl: string;
   phonetic: string;
-  characters: CharacterDTO[] = [];
+  characters: PhoenemeDTO[] = [];
 
 
-  get getCharacters(): CharacterDTO[] {
+  get getCharacters(): PhoenemeDTO[] {
     return this.characters;
   }
 
-  addCharacter(character: CharacterDTO): void {
+  addCharacter(character: PhoenemeDTO): void {
     this.characters.push(character);
   }
 
@@ -25,12 +25,12 @@ export class VerbCountryServiceDTO {
     this.phonetic = phonetic;
   }
 
-  getVerbName(): string {
-    return this.verbName;
+  getWordName(): string {
+    return this.wordName;
   }
 
-  setVerbName(verbName: string) {
-    this.verbName = verbName;
+  setWordName(verbName: string) {
+    this.wordName = verbName;
   }
 
   getCountry(): keyof typeof PronunciationTypesCountry {
@@ -50,17 +50,17 @@ export class VerbCountryServiceDTO {
   }
 }
 
-export class CharacterDTO {
-  phoneticCharacter: string;
+export class PhoenemeDTO {
+  phoenemeName: string;
   wordExample: string;
-  private audioCharacterUrl: string;
+  private audioPhoenemeUrl: string;
 
-  getPhoneticCharacter(): string {
-    return this.phoneticCharacter;
+  getPhoneme(): string {
+    return this.phoenemeName;
   }
 
-  setPhoneticCharacter(phoneticCharacter: string) {
-    this.phoneticCharacter = phoneticCharacter;
+  setPhoneme(phoneticCharacter: string) {
+    this.phoenemeName = phoneticCharacter;
   }
 
   getWordExample(): string {
@@ -71,11 +71,11 @@ export class CharacterDTO {
     this.wordExample = wordExample;
   }
 
-  getAudioCharacterUrl(): string {
-    return this.audioCharacterUrl;
+  getAudioPhoenemeUrl(): string {
+    return this.audioPhoenemeUrl;
   }
 
-  setAudioCharacterUrl(audioCharacterUrl: string) {
-    this.audioCharacterUrl = audioCharacterUrl;
+  setAudioPhonemeUrl(audioCharacterUrl: string) {
+    this.audioPhoenemeUrl = audioCharacterUrl;
   }
 }

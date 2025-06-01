@@ -1,0 +1,50 @@
+[
+  {
+    "wordName": "i",
+    "images": [
+      "https://example.com/images/i1.jpg"
+    ],
+    "person": "first",
+    "number": "singular"
+  },
+  {
+    "wordName": "you",
+    "images": [
+      "https://example.com/images/you1.jpg"
+    ],
+    "person": "second",
+    "number": "singular"
+  },
+  {
+    "wordName": "he",
+    "images": [
+      "https://example.com/images/he1.jpg"
+    ],
+    "person": "third",
+    "number": "singular"
+  },
+  {
+    "wordName": "she",
+    "images": [
+      "https://example.com/images/she1.jpg"
+    ],
+    "person": "third",
+    "number": "singular"
+  },
+  {
+    "wordName": "we",
+    "images": [
+      "https://example.com/images/we1.jpg"
+    ],
+    "person": "first",
+    "number": "plural"
+  },
+  {
+    "wordName": "they",
+    "images": [
+      "https://example.com/images/they1.jpg"
+    ],
+    "person": "third",
+    "number": "plural"
+  }
+]

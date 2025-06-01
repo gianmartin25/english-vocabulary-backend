@@ -15,8 +15,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 
 export interface IVerb {
-  word: string;
-  type: string;
+  wordName: string;
   images: string[];
 }
 
@@ -34,7 +33,7 @@ export class VerbsController {
 
   @Get()
   async findAll() {
-    const dataPath = path.resolve(process.cwd(), 'src', 'infrastructure', 'data', 'data.json');
+    const dataPath = path.resolve(process.cwd(), 'src', 'infrastructure', 'data', 'verbs.json');
     const rawData = await fs.readFile(dataPath, 'utf-8');
     const verbs = JSON.parse(rawData) as IVerb[];
 

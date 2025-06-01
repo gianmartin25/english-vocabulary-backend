@@ -1,0 +1,29 @@
+[
+  {
+    "wordName": "fast",
+    "images": [
+      "https://example.com/images/fast1.jpg",
+      "https://example.com/images/fast2.jpg"
+    ],
+    "comparative": "faster",
+    "superlative": "fastest"
+  },
+  {
+    "wordName": "happy",
+    "images": [
+      "https://example.com/images/happy1.jpg",
+      "https://example.com/images/happy2.jpg"
+    ],
+    "comparative": "happier",
+    "superlative": "happiest"
+  },
+  {
+    "wordName": "strong",
+    "images": [
+      "https://example.com/images/strong1.jpg",
+      "https://example.com/images/strong2.jpg"
+    ],
+    "comparative": "stronger",
+    "superlative": "strongest"
+  }
+]
